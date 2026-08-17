@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NPM Package Comparator
+
+Compare & Recommend the best NPM package for a keyword. Search two npm packages, see them compared side by side, and get a data-driven recommendation on which one to use.
+
+## Features
+
+- **Search & select** — autocomplete search for npm packages, restricted to exactly two selections at a time (with a toast if you try for a third).
+- **Comparison table** — description, keywords, license, repository links, last modification date, authors/publishers, and maintainers for both packages.
+- **Downloads chart** — a full year of daily download counts for both packages, plotted side by side.
+- **Weighted recommendation** — a winner is picked using 50% downloads, 30% tests & carefulness, and 20% community interest, computed pairwise from live [npms.io](https://api-docs.npms.io/) data.
+- **Language breakdown** — the winning package's GitHub language composition (via the [GitHub REST API](https://docs.github.com/en/rest)).
+- Shareable comparisons — the selected packages are synced to the URL (`?a=&b=`), so a comparison can be bookmarked or shared.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to use the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Optional: GitHub token
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Language breakdowns are fetched from the GitHub API, which is capped at 60 requests/hour when unauthenticated. Copy `.env.example` to `.env` and set `GITHUB_TOKEN` to a personal access token (no scopes required, public repo read access only) to raise that limit.
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js](https://nextjs.org) (App Router, Route Handlers)
+- React & TypeScript
+- Tailwind CSS
+- [Recharts](https://recharts.org) for the downloads chart
+- [npms.io API](https://api-docs.npms.io/) and the [GitHub REST API](https://docs.github.com/en/rest) for package data
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy on [Vercel](https://vercel.com/new) like any Next.js app — set the `GITHUB_TOKEN` environment variable in the project settings if you want authenticated GitHub API access.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Developed by [Ali Ijaz](https://aliijaz-portfolio.vercel.app/).
