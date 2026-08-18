@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Image from "next/image";
 import { Comparator } from "@/components/Comparator";
 import { ToastProvider } from "@/components/Toast";
+import { AdSlot } from "@/components/AdSlot";
 
 export default function Home() {
   return (
@@ -24,10 +25,18 @@ export default function Home() {
           </span>
         </header>
 
-        <main className="flex flex-1 justify-center px-6 py-10">
+        <main className="flex flex-1 flex-col items-center gap-6 px-6 py-10">
+          <div className="w-full max-w-3xl">
+            <AdSlot slot="1111111111" label="Advertisement" />
+          </div>
+
           <Suspense>
             <Comparator />
           </Suspense>
+
+          <div className="w-full max-w-3xl">
+            <AdSlot slot="2222222222" label="Advertisement" />
+          </div>
         </main>
 
         <footer className="py-6 text-center text-sm text-slate-500">
