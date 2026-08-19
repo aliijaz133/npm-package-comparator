@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -99,11 +98,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         {adsenseClientId && (
-          <Script
+          // Rendered as a plain <script> (not next/script) so Google's AdSense
+          // site-verification crawler finds a literal tag in the static HTML —
+          // every next/script strategy defers real insertion to client-side JS.
+          <script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
             crossOrigin="anonymous"
-            strategy="afterInteractive"
           />
         )}
       </head>
