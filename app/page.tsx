@@ -25,7 +25,7 @@ export default function Home() {
           </span>
         </header>
 
-        <main className="flex flex-1 flex-col items-center gap-6 px-6 py-10">
+        <main className="flex flex-1 flex-col items-center gap-6 px-4 py-6 sm:px-6 sm:py-10">
           <div className="w-full max-w-3xl">
             <AdSlot slot="9128568448" label="Advertisement" />
           </div>

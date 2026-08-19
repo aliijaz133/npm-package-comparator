@@ -101,8 +101,8 @@ export function SearchBox({ selected, onChange, onCompare, loading }: SearchBoxP
   const canCompare = selected.length === MAX_PACKAGES && !loading;
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-lg shadow-black/30">
-      <div ref={containerRef} className="relative flex gap-3">
+    <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-lg shadow-black/30 sm:p-6">
+      <div ref={containerRef} className="relative flex flex-col gap-3 sm:flex-row">
         <div className="flex flex-1 flex-wrap items-center gap-2 rounded-md border border-slate-700 bg-slate-950/40 px-3 py-2 transition-colors focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500/40">
           {selected.map((name, index) => (
             <span
@@ -146,7 +146,7 @@ export function SearchBox({ selected, onChange, onCompare, loading }: SearchBoxP
           type="button"
           onClick={onCompare}
           disabled={!canCompare}
-          className="flex items-center gap-2 rounded-md bg-linear-to-r from-blue-500 to-emerald-500 px-5 py-2 text-sm font-medium text-white shadow-md shadow-blue-950/40 transition-all hover:from-blue-400 hover:to-emerald-400 disabled:cursor-not-allowed disabled:from-slate-800 disabled:to-slate-800 disabled:text-slate-500 disabled:shadow-none"
+          className="flex w-full items-center justify-center gap-2 rounded-md bg-linear-to-r from-blue-500 to-emerald-500 px-5 py-2 text-sm font-medium text-white shadow-md shadow-blue-950/40 transition-all hover:from-blue-400 hover:to-emerald-400 disabled:cursor-not-allowed disabled:from-slate-800 disabled:to-slate-800 disabled:text-slate-500 disabled:shadow-none sm:w-auto"
         >
           {loading ? (
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />

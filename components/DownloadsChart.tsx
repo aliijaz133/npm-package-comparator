@@ -47,10 +47,10 @@ export function DownloadsChart({ names, packages }: DownloadsChartProps) {
   }
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-lg shadow-black/30">
+    <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-lg shadow-black/30 sm:p-6">
       <h2 className="text-lg font-semibold text-slate-100">Downloads</h2>
 
-      <div className="mt-4 flex items-center gap-6">
+      <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
         {names.map((name, index) => (
           <div key={name} className="flex items-center gap-2 text-sm text-slate-300">
             <span

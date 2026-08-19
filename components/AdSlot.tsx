@@ -41,7 +41,7 @@ export function AdSlot({ slot, label = "Advertisement", className = "" }: AdSlot
   }
 
   return (
-    <div className={`w-full overflow-hidden ${className}`}>
+    <div className={`ad-slot w-full ${className}`}>
       <p className="mb-1 text-center text-[10px] uppercase tracking-widest text-slate-600">
         {label}
       </p>
@@ -51,7 +51,7 @@ export function AdSlot({ slot, label = "Advertisement", className = "" }: AdSlot
         style={{ display: "block" }}
         data-ad-client={adsenseClientId}
         data-ad-slot={slot}
-        data-ad-format="auto"
+        data-ad-format="horizontal"
         data-full-width-responsive="true"
       />
     </div>

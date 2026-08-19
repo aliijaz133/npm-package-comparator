@@ -11,7 +11,7 @@ const LINK_ACCENT = ["text-blue-400 hover:text-blue-300", "text-emerald-400 hove
 export function ComparisonTable({ packages }: ComparisonTableProps) {
   return (
     <div className="overflow-hidden rounded-xl border border-slate-800 bg-slate-900 shadow-lg shadow-black/30">
-      <h2 className="px-6 pt-6 text-lg font-semibold text-slate-100">Comparison</h2>
+      <h2 className="px-4 pt-4 text-lg font-semibold text-slate-100 sm:px-6 sm:pt-6">Comparison</h2>
       <div className="mt-4 overflow-x-auto">
         <table className="w-full border-collapse text-sm">
           <tbody>
@@ -143,9 +143,9 @@ function Row({
 }) {
   return (
     <tr className="border-t border-slate-800">
-      <td className="w-1/4 px-6 py-4 align-top font-medium text-slate-500">{label}</td>
+      <td className="w-1/4 px-4 py-4 align-top font-medium text-slate-500 sm:px-6">{label}</td>
       {values.map((value, index) => (
-        <td key={index} className="w-[37.5%] px-6 py-4 align-top text-slate-200">
+        <td key={index} className="w-[37.5%] px-4 py-4 align-top text-slate-200 sm:px-6">
           {value}
         </td>
       ))}

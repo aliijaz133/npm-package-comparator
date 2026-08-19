@@ -21,3 +21,15 @@ body {
     radial-gradient(680px circle at 88% -10%, color-mix(in srgb, #22c55e 16%, transparent), transparent 60%);
   background-repeat: no-repeat;
 }
+
+/* Google's officially documented pattern for collapsing an AdSense slot once
+   it's confirmed to have no ad to show, so an unfilled slot doesn't reserve
+   large blank space. This only hides confirmed-empty slots, never a filled
+   ad, so it doesn't touch AdSense's own ad sizing/rendering. */
+ins.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
+.ad-slot:has(> ins.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none;
+}

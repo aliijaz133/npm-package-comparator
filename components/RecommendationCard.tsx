@@ -18,7 +18,7 @@ export function RecommendationCard({ names, packages, recommendation }: Recommen
 
   return (
     <div className="rounded-xl border border-slate-800 bg-slate-900 shadow-lg shadow-black/30">
-      <div className="px-6 pt-6 text-center text-lg">
+      <div className="px-4 pt-4 text-center text-lg sm:px-6 sm:pt-6">
         <span className="mr-1">✨</span>
         <span className="text-slate-300">{recommendation.winner} is</span>{" "}
         <span className="bg-linear-to-r from-blue-400 to-emerald-400 bg-clip-text font-bold text-transparent">
@@ -27,8 +27,8 @@ export function RecommendationCard({ names, packages, recommendation }: Recommen
         <span className="ml-1">✨</span>
       </div>
 
-      <div className="mx-6 my-6 rounded-lg bg-linear-to-r from-blue-500/40 to-emerald-500/40 p-px">
-        <div className="flex flex-col justify-between gap-4 rounded-lg bg-slate-900 p-5 sm:flex-row">
+      <div className="mx-4 my-4 rounded-lg bg-linear-to-r from-blue-500/40 to-emerald-500/40 p-px sm:mx-6 sm:my-6">
+        <div className="flex flex-col justify-between gap-4 rounded-lg bg-slate-900 p-4 sm:flex-row sm:p-5">
           <div className="flex-1">
             <div className="flex items-center gap-2">
               <span aria-hidden>👑</span>
@@ -79,7 +79,7 @@ export function RecommendationCard({ names, packages, recommendation }: Recommen
             </div>
           </div>
 
-          <div className="flex shrink-0 gap-8 text-center sm:pl-6">
+          <div className="flex shrink-0 justify-between gap-4 text-center sm:justify-start sm:gap-8 sm:pl-6">
             <Stat label="Downloads" value={`${formatCompactNumber(totalDownloads)}+`} accent="text-blue-400" />
             <Stat
               label="Stars"
