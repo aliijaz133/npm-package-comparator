@@ -27,7 +27,7 @@ export default function Home() {
 
         <main className="flex flex-1 flex-col items-center gap-6 px-6 py-10">
           <div className="w-full max-w-3xl">
-            <AdSlot slot="1111111111" label="Advertisement" />
+            <AdSlot slot="9128568448" label="Advertisement" />
           </div>
 
           <Suspense>
@@ -35,7 +35,7 @@ export default function Home() {
           </Suspense>
 
           <div className="w-full max-w-3xl">
-            <AdSlot slot="2222222222" label="Advertisement" />
+            <AdSlot slot="4155443362" label="Advertisement" />
           </div>
         </main>
 
