@@ -10,25 +10,26 @@ declare global {
 
 interface AdSlotProps {
   slot: string;
+  enabled: boolean;
   label?: string;
   className?: string;
 }
 
 const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
 
-export function AdSlot({ slot, label = "Advertisement", className = "" }: AdSlotProps) {
+export function AdSlot({ slot, enabled, label = "Advertisement", className = "" }: AdSlotProps) {
   const insRef = useRef<HTMLModElement>(null);
   const pushed = useRef(false);
 
   useEffect(() => {
-    if (!adsenseClientId || pushed.current) return;
+    if (!adsenseClientId || !enabled || pushed.current) return;
     pushed.current = true;
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (error) {
       console.error("AdSense push failed:", error);
     }
-  }, []);
+  }, [enabled]);
 
   if (!adsenseClientId) {
     return (
@@ -36,6 +37,16 @@ export function AdSlot({ slot, label = "Advertisement", className = "" }: AdSlot
         className={`flex min-h-24 w-full items-center justify-center rounded-lg border border-dashed border-slate-700 bg-slate-900/40 text-xs text-slate-600 ${className}`}
       >
         Ad space — set NEXT_PUBLIC_ADSENSE_CLIENT_ID to enable
+      </div>
+    );
+  }
+
+  if (!enabled) {
+    return (
+      <div
+        className={`flex min-h-24 w-full items-center justify-center rounded-lg border border-dashed border-slate-700 bg-slate-900/40 text-xs text-slate-600 ${className}`}
+      >
+        Ads are off until you accept cookies
       </div>
     );
   }

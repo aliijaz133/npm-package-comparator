@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/lib/site";
+import { CONSENT_COOKIE, isConsentValue } from "@/lib/consent";
+import { CookieConsent } from "@/components/CookieConsent";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -84,8 +87,12 @@ const structuredData = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
   const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  const cookieStore = await cookies();
+  const consentCookie = cookieStore.get(CONSENT_COOKIE)?.value;
+  const consent = isConsentValue(consentCookie) ? consentCookie : null;
+  const adsAllowed = Boolean(adsenseClientId) && consent === "accepted";
 
   return (
     <html
@@ -97,10 +104,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        {adsenseClientId && (
+        {adsAllowed && (
           // Rendered as a plain <script> (not next/script) so Google's AdSense
           // site-verification crawler finds a literal tag in the static HTML —
           // every next/script strategy defers real insertion to client-side JS.
+          // Only included once cookie consent is accepted.
           <script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
@@ -108,7 +116,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           />
         )}
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <CookieConsent initialConsent={consent} />
+      </body>
     </html>
   );
 }
